@@ -35,7 +35,10 @@ public class Example4M extends Application
 
         root.getChildren().add( canvas );
 
-        Circle targetData = new Circle(100,100,32);
+        // [jwc]
+//        Circle targetData = new Circle(100,100,32);
+        Circle targetData = new Circle(100,100,100);
+        // Circle targetData = new Circle();
         IntValue points = new IntValue(0);
 
         theScene.setOnMouseClicked(
@@ -52,6 +55,9 @@ public class Example4M extends Application
                     }
                     else
                         points.value = 0;
+                        // [jwc]
+//N                         targetData.setCenter(targetData.getX()+1,targetData.getY()+1);
+                        
                 }
             });
 
@@ -72,9 +78,14 @@ public class Example4M extends Application
                 gc.setFill( new Color(0.85, 0.85, 1.0, 1.0) );
                 gc.fillRect(0,0, 512,512);
 
+                //[jwc]+x
+//Y                 targetData.setCenter(targetData.getX()+1,targetData.getY()+1);
                 gc.drawImage( bullseye, 
-                    targetData.getX() - targetData.getRadius(),
-                    targetData.getY() - targetData.getRadius() );
+                targetData.getX() - targetData.getRadius(),
+                targetData.getY() - targetData.getRadius() );
+                // gc.drawImage( bullseye, 
+                // targetData.getX()+1 - targetData.getRadius(),
+                // targetData.getY()+1 - targetData.getRadius() );
 
                 gc.setFill( Color.BLUE );
 

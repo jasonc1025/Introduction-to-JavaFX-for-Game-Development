@@ -74,7 +74,9 @@ public class Example5 extends Application
         for (int i = 0; i < 15; i++)
         {
             Sprite moneybag = new Sprite();
-            moneybag.setImage("moneybag.png");
+//[jwc]            moneybag.setImage("moneybag.png");
+//            [jwc] whitebackground not great: moneybag.setImage("cookie-chocolatechip.png");
+            moneybag.setImage("ufo.png");
             double px = 350 * Math.random() + 50;
             double py = 350 * Math.random() + 50;          
             moneybag.setPosition(px,py);
@@ -128,9 +130,12 @@ public class Example5 extends Application
                 for (Sprite moneybag : moneybagList )
                     moneybag.render( gc );
 
-                String pointsText = "Cash: $" + (100 * score.value);
-                gc.fillText( pointsText, 360, 36 );
-                gc.strokeText( pointsText, 360, 36 );
+// [jwc]                String pointsText = "Cash: $" + (100 * score.value);
+                String pointsText = "UFOs: " + (1 * score.value);
+//                gc.fillText( pointsText, 360, 36 );
+                gc.fillText( pointsText, 370, 36 );
+//                gc.strokeText( pointsText, 360, 36 );
+                gc.strokeText( pointsText, 370, 36 );                
             }
         }.start();
 
