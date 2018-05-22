@@ -69,30 +69,35 @@ public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application
         gc.setStroke( Color.BLACK );
         gc.setLineWidth(1);
         
-        // IconClass briefcaseObject = new IconClass();
-        // briefcaseObject.setImage("briefcase.png");
-        IconClass briefcaseObject = new IconClass("briefcase.png", 0, 0);
-        // briefcaseObject.setImage("briefcase.png");
-        // briefcaseObject.setPosition(200, 0);
+        IconCls earthObj = new IconCls();
+
+        // IconCls briefcaseObj = new IconCls();
+        // briefcaseObj.setImage("briefcase.png");
+        // IconCls briefcaseObj = new IconCls("briefcase.png", 0, 0);
+        IconCls briefcaseObj = new IconCls("briefcase.png");
+        // briefcaseObj.setImage("briefcase.png");
+        // briefcaseObj.setPosition(200, 0);
         
-        ArrayList<IconClass> ufoList = new ArrayList<IconClass>();
+        ArrayList<IconCls> ufoList = new ArrayList<IconCls>();
         
         // Y for (int i = 0; i < 15; i++)
         for (int i = 0; i < 9; i++)
         {
-            // IconClass ufoObject = new IconClass();
+            // IconCls ufoObj = new IconCls();
 //[jwc]            moneybag.setImage("moneybag.png");
 //            [jwc] whitebackground not great: moneybag.setImage("cookie-chocolatechip.png");
-            // ufoObject.setImage("ufo.png");
+            // ufoObj.setImage("ufo.png");
             // double px = 350 * Math.random() + 50;
             // double py = 350 * Math.random() + 50;          
 
-            double px = SCREEN_LENGTH_X * Math.random();
-            double py = SCREEN_LENGTH_Y * Math.random();          
+            // * Do not embed this calculation within Constructor since will complicate it and rather teach simplest Constrcutor
+            double px = (SCREEN_LENGTH_X -100) * Math.random() + 50;
+            double py = (SCREEN_LENGTH_Y -100) * Math.random() + 50;          
 
-            // ufoObject.setPosition(px,py);
-            IconClass ufoObject = new IconClass("ufo.png", px, py);
-            ufoList.add( ufoObject );
+            // ufoObj.setPosition(px,py);
+            // IconCls ufoObj = new IconCls("ufo.png", px, py);
+            IconCls ufoObj = new IconCls("ufo.png", px, py);
+            ufoList.add( ufoObj );
         }
         
         LongValue lastNanoTime = new LongValue( System.nanoTime() );
@@ -109,25 +114,28 @@ public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application
                 
                 // game logic
                 
-                briefcaseObject.setVelocity(0,0);
+                // * May not be needed since stationary, but still 'update' in case may move later
+                earthObj.update(elapsedTime);
+               
+                briefcaseObj.setVelocity(0,0);
                 if (playerInputList.contains("LEFT"))
-                    briefcaseObject.addVelocity(-50,0);
+                    briefcaseObj.addVelocity(-50,0);
                 if (playerInputList.contains("RIGHT"))
-                    briefcaseObject.addVelocity(50,0);
+                    briefcaseObj.addVelocity(50,0);
                 if (playerInputList.contains("UP"))
-                    briefcaseObject.addVelocity(0,-50);
+                    briefcaseObj.addVelocity(0,-50);
                 if (playerInputList.contains("DOWN"))
-                    briefcaseObject.addVelocity(0,50);
+                    briefcaseObj.addVelocity(0,50);
                     
-                briefcaseObject.update(elapsedTime);
+                briefcaseObj.update(elapsedTime);
                 
                 // collision detection
                 
-                Iterator<IconClass> ufoIterator = ufoList.iterator();
+                Iterator<IconCls> ufoIterator = ufoList.iterator();
                 while ( ufoIterator.hasNext() )
                 {
-                    IconClass ufoObject = ufoIterator.next();
-                    if ( briefcaseObject.intersects(ufoObject) )
+                    IconCls ufoObj = ufoIterator.next();
+                    if ( briefcaseObj.intersects(ufoObj) )
                     {
                         ufoIterator.remove();
                         score.value++;
@@ -137,10 +145,11 @@ public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application
                 // render
                 
                 gc.clearRect(0, 0, 512,512);
-                briefcaseObject.render( gc );
+                earthObj.render( gc );
+                briefcaseObj.render( gc );
                 
-                for (IconClass ufoObject : ufoList )
-                    ufoObject.render( gc );
+                for (IconCls ufoObj : ufoList )
+                    ufoObj.render( gc );
 
 // [jwc]                String pointsText = "Cash: $" + (100 * score.value);
                 String pointsText = "UFOs: " + (1 * score.value);
