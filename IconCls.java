@@ -79,7 +79,7 @@ public class IconCls
     public Rectangle2D getBoundary()
     {
         // System.out.println("this: positionXFld,positionYFld,width,height: " + this  + ": " + positionXFld + "," + positionYFld + "," + width + "," + height);
-        System.out.println("this: positionXFld,positionYFld,width,height: " + this  + ": " + positionXFld + "," + positionYFld);
+        // System.out.println("this: positionXFld,positionYFld,width,height: " + this  + ": " + positionXFld + "," + positionYFld);
         // return new Rectangle2D(positionXFld,positionYFld,width,height);
         return new Rectangle2D(positionXFld, positionYFld, iconImageFld.getWidth(), iconImageFld.getHeight());
     }
