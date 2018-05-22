@@ -74,6 +74,7 @@ public class IconClass
 
     public Rectangle2D getBoundary()
     {
+        System.out.println("this: positionX,positionY,width,height: " + this  + ": " + positionX + "," + positionY + "," + width + "," + height);
         return new Rectangle2D(positionX,positionY,width,height);
     }
 

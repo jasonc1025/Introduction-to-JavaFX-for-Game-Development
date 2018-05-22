@@ -17,6 +17,9 @@ import java.util.Iterator;
 // Collect the Money Bags!
 public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application 
 {
+    public static final int SCREEN_LENGTH_X = 500;
+    public static final int SCREEN_LENGTH_Y = 500;
+
     public static void main(String[] args) 
     {
         launch(args);
@@ -31,7 +34,8 @@ public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application
         Scene theScene = new Scene( root );
         theStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 512, 512 );
+        // Canvas canvas = new Canvas( 512, 512 );
+        Canvas canvas = new Canvas( SCREEN_LENGTH_X, SCREEN_LENGTH_Y );
         root.getChildren().add( canvas );
 
         ArrayList<String> playerInputList = new ArrayList<String>();
@@ -67,20 +71,25 @@ public class Example5_ApCsA_UfoCatchNRelease_Constructors extends Application
         
         // IconClass briefcaseObject = new IconClass();
         // briefcaseObject.setImage("briefcase.png");
-        IconClass briefcaseObject = new IconClass("briefcase.png", 200, 0);
+        IconClass briefcaseObject = new IconClass("briefcase.png", 0, 0);
         // briefcaseObject.setImage("briefcase.png");
         // briefcaseObject.setPosition(200, 0);
         
         ArrayList<IconClass> ufoList = new ArrayList<IconClass>();
         
-        for (int i = 0; i < 15; i++)
+        // Y for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 9; i++)
         {
             // IconClass ufoObject = new IconClass();
 //[jwc]            moneybag.setImage("moneybag.png");
 //            [jwc] whitebackground not great: moneybag.setImage("cookie-chocolatechip.png");
             // ufoObject.setImage("ufo.png");
-            double px = 350 * Math.random() + 50;
-            double py = 350 * Math.random() + 50;          
+            // double px = 350 * Math.random() + 50;
+            // double py = 350 * Math.random() + 50;          
+
+            double px = SCREEN_LENGTH_X * Math.random();
+            double py = SCREEN_LENGTH_Y * Math.random();          
+
             // ufoObject.setPosition(px,py);
             IconClass ufoObject = new IconClass("ufo.png", px, py);
             ufoList.add( ufoObject );
